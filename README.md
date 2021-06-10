@@ -12,6 +12,6 @@ This can be efficiently computed using long arithmetic with the help of SSE or A
 
 The Alexei Sibidanov's implementation relies heavily on assembly language to implement multiplication of two integers with length of 576 bits each and is avaialble only for X86+64 CPUs with AVX2 support. 
 
-The next development is a portable (not using assembly language) implementation of Ranlux++ for the [ROOT-Computing library developed by CERN](https://en.wikipedia.org/wiki/ROOT). This is advancement was presented by Jonas Hahnfeld and Lorenzo Moneta [in this article.](https://arxiv.org/abs/2106.02504)  The portable implementation reaches performance very close to the original assembler version.
+The next development is a portable (not using assembly language) implementation of Ranlux++ for the [ROOT](https://en.wikipedia.org/wiki/ROOT) - Computing library developed by [CERN](https://en.wikipedia.org/wiki/CERN) (European Organization for Nuclear Research, the site of the Large Hadron Collider LHC). This advancement was presented by Jonas Hahnfeld and Lorenzo Moneta [in this article.](https://arxiv.org/abs/2106.02504). The portable implementation reaches performance very close to the original assembler version.
 
 My contribution is a standalone version of Ranlux++ written in C. It's combines [Alexei Sibidanov's code](https://github.com/sibidanov/ranluxpp) with the [implementation for ROOT](https://github.com/root-project/root/tree/master/math/mathcore/src/ranluxpp) converted from C++ to C.
