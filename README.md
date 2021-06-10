@@ -1,6 +1,6 @@
 # Ranluxpp - portable (not using assemly language) standalone version of Ranlux++ implemented in C
 
-This is an improved version of the RANLUX generator, called Ranlux++ (or RANLUXPP) proposed by Alexei Sibidanov. 
+This is an improved version of the RANLUX generator, called Ranlux++ (or RANLUXPP) as originally proposed by Alexei Sibidanov.
 
 There are two papers on it:
 * [A revision of the subtract-with-borrow random number generators](https://arxiv.org/pdf/1705.03123.pdf)
