@@ -1,6 +1,6 @@
 OBJS	= ranluxpp.o ranluxpp-test.o
 SOURCE	= ranluxpp.c ranluxpp-test.c
-HEADER	= helpers.h mulmod.h ranlux_lcg.h ranluxpp.h
+HEADER	= helpers.h mulmod.h ranluxpp.h
 OUT	= ranluxpp-test
 CC	 = gcc
 CFLAGS   = -g -Wall -Wextra -Wpedantic -O3 -fsanitize=undefined
