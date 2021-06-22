@@ -9,6 +9,9 @@
 
 #include <inttypes.h>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+
 /// Multiply two 576 bit numbers, stored as 9 numbers of 64 bits each
 ///
 /// \param[in] in1 first factor as 9 numbers of 64 bits each
@@ -46,7 +49,10 @@ static void multiply9x9(const uint64_t *in1, const uint64_t *in2, uint64_t *out)
          uint64_t fac1 = in1[j];
          uint64_t fac2 = in2[k];
 #if defined(__SIZEOF_INT128__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
          unsigned __int128 prod = fac1;
+#pragma GCC diagnostic pop
          prod = prod * fac2;
 
          uint64_t upper = prod >> 64;
@@ -155,21 +161,22 @@ static void mod_m(const uint64_t *mul, uint64_t *out)
    // assembly implementation by Alexei Sibidanov.
 
 
-// Please note that code bellow is using left shift of negative value -1 which undefined
-//  On x86_64 and with gcc version 10.3.1 it gives the expected results
-#if 0
+#if 1
    // c = 0 -> t0 = 0; c = 1 -> t0 = 0; c = -1 -> all bits set (sign extension)
    // (The assembly implementation shifts by 63, which gives the same result.)
    int64_t t0 = c >> 1;
 
    // c = 0 -> t2 = 0; c = 1 -> upper 16 bits set; c = -1 -> lower 48 bits set
-   int64_t t2 = t0 - (c << 48);
+   //  left shift of negative value -1 is undefined
+   //  we need to cast it to uint64_t first, then do the left shift and then cast it back to signed
+   int64_t t2 = t0 - (int64_t) ( (uint64_t)c << 48);
 
    // c = 0 -> t1 = 0; c = 1 -> all bits set; c = -1 -> t1 = 0
    // (The assembly implementation shifts by 63, which gives the same result.)
    int64_t t1 = t2 >> 48;
 
 #else
+   // This has the same effect as code above. It's slower but it's more readable.
    int64_t t0, t1, t2;
    if ( c == 0 ) {
      t0 = 0;
@@ -260,4 +267,5 @@ static void powermod(const uint64_t *base, uint64_t *res, uint64_t n)
    }
 }
 
+#pragma GCC diagnostic pop
 #endif
