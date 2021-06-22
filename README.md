@@ -22,7 +22,7 @@ My contribution is a standalone version of Ranlux++ written in C. It's combines 
 * Write out first 1e9 64-bit values to stdout: `./ranluxpp-test -w -n 1e9 | pv > /dev/null`
 * Generate endless stream of 64-bit values: `./ranluxpp-test -w -n 0 | practrand-RNG_test stdin64 -tlmax 64G -multithreaded`
 * `./ranluxpp-test --help` to get info on usage
-* Verify output (using p=2048 and seed=1): `./ranluxpp-test -w -n 0 | head -c 7200 | sha256sum`. Hash: 67a0ef6f442519d7f674c721a3ebeb175005fc9fe6b17b359b39725dfa393819
+* Verify output (using p=2048 and seed=1): `./ranluxpp-test -w -n 0 | head -c 7200 | sha256sum`. Hash: `67a0ef6f442519d7f674c721a3ebeb175005fc9fe6b17b359b39725dfa393819`
   * Compare output of ` ./ranluxpp-test -w -n 0 | head -c 7200` with `ranluxpp_p_2048_seed_1.output` file
 
 
