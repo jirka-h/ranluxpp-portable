@@ -3,7 +3,8 @@ SOURCE	= ranluxpp.c ranluxpp-test.c
 HEADER	= helpers.h mulmod.h ranluxpp.h
 OUT	= ranluxpp-test
 CC	 = gcc
-CFLAGS   = -g -Wall -Wextra -Wpedantic -O3 -fsanitize=undefined
+#CFLAGS   = -g -Wall -Wextra -Wpedantic -O3 -fsanitize=undefined
+CFLAGS   = -g -Wall -Wextra -Wpedantic -O3
 
 all: $(OBJS)
 	$(CC) $(OBJS) -o $(OUT) $(CFLAGS)
