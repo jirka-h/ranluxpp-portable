@@ -1,4 +1,16 @@
 /*
+Copyright 2021 Jirka Hladky hladky DOT jiri AT gmail DOT com
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
 gcc -g -O3 -Wall -Wextra -Wpedantic -fsanitize=undefined -I./ -o ranluxpp-test ranluxpp-test.c ranluxpp.c
 */
 
@@ -27,7 +39,7 @@ const char *argp_program_bug_address = "<hladky.jiri@gmail.com>";
 static char doc[] = "Test ranluxpp portable implementation";
 /* The options we understand. */
 static struct argp_option options[] = {
-  {"number",   'n', "NUMBER", 0, "How many 64-bit numbers to generate", 0},
+  {"number",   'n', "NUMBER", 0, "How many 64-bit numbers to generate. Use '0' for endless stream of values.", 0},
   {"fwrite",   'w', 0,        0, "Output values", 0 },
   { 0 }
 };
@@ -47,6 +59,9 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state) {
     {
     case 'n':
       arguments->n = (size_t) strtod(arg, NULL);
+      if (arguments->n == 0) {
+        arguments->n = SIZE_MAX;
+      }
       break;
     case 'w':
       arguments->fwrite = 1;
