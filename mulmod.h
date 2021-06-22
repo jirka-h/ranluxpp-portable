@@ -157,7 +157,7 @@ static void mod_m(const uint64_t *mul, uint64_t *out)
 
 // Please note that code bellow is using left shift of negative value -1 which undefined
 //  On x86_64 and with gcc version 10.3.1 it gives the expected results
-#if 1
+#if 0
    // c = 0 -> t0 = 0; c = 1 -> t0 = 0; c = -1 -> all bits set (sign extension)
    // (The assembly implementation shifts by 63, which gives the same result.)
    int64_t t0 = c >> 1;
